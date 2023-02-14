@@ -6,12 +6,18 @@ import { MainHeader } from "../MainHeader"
 import { Aside } from "../Aside"
 import { Content } from "../Content"
 
-export const Layout: React.FC = () => {
+interface Props {
+  children: React.ReactNode
+}
+
+export const Layout: React.FC<Props> = ({ children }) => {
   return (
     <Grid>
       <MainHeader />
       <Aside />
-      <Content />
+      <Content>
+        {children}
+      </Content>
     </Grid>
   )
 }
