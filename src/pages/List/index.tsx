@@ -4,15 +4,21 @@ import { HistoryFinanceCard } from '../../components/HistoryFinanceCard'
 import { SelectInput } from '../../components/Selectinput'
 import { 
   Container,
-  Content 
+  Content,
+  Filters 
 } from './style'
 
 export const List: React.FC = () => {
-  const options = [
-    {
-      value: "Rodrigo",
-      label: "Rodrigo"
-    }
+  const months = [
+    {value: 7, label: "Julho"},
+    {value: 8, label: "Agosto"},
+    {value: 9, label: "Setembro"},
+  ]
+
+  const years = [
+    {value: 2020, label: 2020},
+    {value: 2019, label: 2019},
+    {value: 2018, label: 2018},
   ]
 
   return (
@@ -22,9 +28,28 @@ export const List: React.FC = () => {
         lineColor='#E44C4E'
       >
         <SelectInput 
-          options={options}
+          options={months}
+        />
+        <SelectInput 
+          options={years}
         />
       </ContentHeader>
+
+      <Filters>
+        <button 
+          type='button'
+          className='tag-filter tag-filter-recurrent'
+        >
+          Recorrentes
+        </button>
+
+        <button 
+          type='button'
+          className='tag-filter tag-filter-eventual'
+        >
+          Eventuais
+        </button>
+      </Filters>
 
       <Content>
         <HistoryFinanceCard 
