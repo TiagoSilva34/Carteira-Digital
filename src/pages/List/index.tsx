@@ -28,111 +28,11 @@ export const List: React.FC = () => {
 
       <Content>
         <HistoryFinanceCard 
-          cardColor='#313862'
           tagColor='#E44C4E'
           title='Conta de luz'
           subTitle='14/02/2023'
           amount='R$ 130,00'
-        />
-        <HistoryFinanceCard 
-          cardColor='#313862'
-          tagColor='#E44C4E'
-          title='Conta de luz'
-          subTitle='14/02/2023'
-          amount='R$ 130,00'
-        />
-         <HistoryFinanceCard 
-          cardColor='#313862'
-          tagColor='#E44C4E'
-          title='Conta de luz'
-          subTitle='14/02/2023'
-          amount='R$ 130,00'
-        />
-          <HistoryFinanceCard 
-          cardColor='#313862'
-          tagColor='#E44C4E'
-          title='Conta de luz'
-          subTitle='14/02/2023'
-          amount='R$ 130,00'
-        />
-          <HistoryFinanceCard 
-          cardColor='#313862'
-          tagColor='#E44C4E'
-          title='Conta de luz'
-          subTitle='14/02/2023'
-          amount='R$ 130,00'
-        />
-          <HistoryFinanceCard 
-          cardColor='#313862'
-          tagColor='#E44C4E'
-          title='Conta de luz'
-          subTitle='14/02/2023'
-          amount='R$ 130,00'
-        />
-          <HistoryFinanceCard 
-          cardColor='#313862'
-          tagColor='#E44C4E'
-          title='Conta de luz'
-          subTitle='14/02/2023'
-          amount='R$ 130,00'
-        />
-          <HistoryFinanceCard 
-          cardColor='#313862'
-          tagColor='#E44C4E'
-          title='Conta de luz'
-          subTitle='14/02/2023'
-          amount='R$ 130,00'
-        />
-          <HistoryFinanceCard 
-          cardColor='#313862'
-          tagColor='#E44C4E'
-          title='Conta de luz'
-          subTitle='14/02/2023'
-          amount='R$ 130,00'
-        />
-          <HistoryFinanceCard 
-          cardColor='#313862'
-          tagColor='#E44C4E'
-          title='Conta de luz'
-          subTitle='14/02/2023'
-          amount='R$ 130,00'
-        />
-          <HistoryFinanceCard 
-          cardColor='#313862'
-          tagColor='#E44C4E'
-          title='Conta de luz'
-          subTitle='14/02/2023'
-          amount='R$ 130,00'
-        />
-          <HistoryFinanceCard 
-          cardColor='#313862'
-          tagColor='#E44C4E'
-          title='Conta de luz'
-          subTitle='14/02/2023'
-          amount='R$ 130,00'
-        />
-          <HistoryFinanceCard 
-          cardColor='#313862'
-          tagColor='#E44C4E'
-          title='Conta de luz'
-          subTitle='14/02/2023'
-          amount='R$ 130,00'
-        />
-          <HistoryFinanceCard 
-          cardColor='#313862'
-          tagColor='#E44C4E'
-          title='Conta de luz'
-          subTitle='14/02/2023'
-          amount='R$ 130,00'
-        />
-          <HistoryFinanceCard 
-          cardColor='#313862'
-          tagColor='#E44C4E'
-          title='Conta de luz'
-          subTitle='14/02/2023'
-          amount='R$ 130,00'
-        />
-        
+        /> 
       </Content>
     </Container>
   )
