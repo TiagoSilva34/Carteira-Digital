@@ -6,20 +6,20 @@ import {
 } from './styles'
 
 interface IContentHeaderProps {
-  titulo: string,
+  title: string,
   lineColor: string,
   children: React.ReactNode
 }
 
 export const ContentHeader: React.FC<IContentHeaderProps> = ({
-  titulo,
+  title,
   lineColor,
   children
 }) => {
   return (
     <Container>
       <TitleContainer lineColor={lineColor}>
-        <h1>{titulo}</h1> 
+        <h1>{title}</h1> 
       </TitleContainer> 
 
       <Controllers>

@@ -13,7 +13,7 @@ export const Dashboard: React.FC = () => {
   return (
     <Container>
       <ContentHeader 
-        titulo='Dashboard'
+        title='Dashboard'
         lineColor='#fff'
       >
         <SelectInput 
