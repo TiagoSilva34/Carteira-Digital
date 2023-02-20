@@ -18,6 +18,7 @@ export const Dashboard: React.FC = () => {
       >
         <SelectInput 
           options={options}
+          onChange={() => {}}
         />
       </ContentHeader>
     </Container>
