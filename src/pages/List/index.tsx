@@ -5,6 +5,7 @@ import { HistoryFinanceCard } from '../../components/HistoryFinanceCard'
 import { SelectInput } from '../../components/Selectinput'
 import gains from "../../repositories/gains"
 import expenses from "../../repositories/expenses"
+import listOfMonths from "../../utils/months"
 import { 
   Container,
   Content,
@@ -26,6 +27,7 @@ export const List: React.FC = () => {
   const { type } = useParams()
   const [monthSelected, setMonthSelected] = useState<string>(String(new Date().getMonth() + 1))
   const [yearSelected, setYearSelected] = useState<string>(String(new Date().getFullYear()))
+  const [selectedFrequency, setSelectedFrequency] = useState<string[]>(['recorrente', 'eventual'])
   const [data, setData] = useState<IData[]>([])
 
   const title = useMemo(() => {
@@ -42,29 +44,59 @@ export const List: React.FC = () => {
     return type === 'entry-balance' ? gains : expenses
   }, [type])
 
-  const months = [
-    {value: 8, label: "Agosto"},
-    {value: 9, label: "Setembro"},
-    {value: 2, label: "Fevereiro"},
-  ]
+  const years = useMemo(() => {
+    let uniqueYears: number[] = []
 
-  const years = [
-    {value: 2023, label: 2023},
-    {value: 2019, label: 2019},
-    {value: 2018, label: 2018},
-  ]
+    listData.forEach(item => {
+      const date = new Date(item.date)
+      const year = date.getFullYear()
+
+      if(!uniqueYears.includes(year)) {
+        uniqueYears.push(year)
+      }
+    })
+
+    return uniqueYears.filter(item => !Number.isNaN(item)).map(year => {
+      return {
+        value: year,
+        label: year
+      }
+    })
+  
+  }, [listData])
+
+  const months = useMemo(() => {
+    return listOfMonths.map((month, index) => {
+      return {
+        value: index + 1,
+        label: month
+      }
+    })
+  }, [])
+
+  const handleFrequencyClick = (frequency: string) => {
+    const alreadySelected = selectedFrequency.findIndex(item => item === frequency)
+
+    if(alreadySelected >= 0) {
+      const filtered = selectedFrequency.filter(item => item !== frequency)
+      console.log(filtered)
+      setSelectedFrequency(filtered)
+    } else {
+      setSelectedFrequency(prev => [...prev, frequency])
+    }
+  }
 
   useEffect(() => {
     const filteredDate = listData.filter(item => {
       const date = new Date(item.date)
       const month = String(date.getMonth() + 1)
       const year = String(date.getFullYear())
-      return month === monthSelected && year === yearSelected
+      return month === monthSelected && year === yearSelected && selectedFrequency.includes(item.frequency)
     })
     
     const formattedData = filteredDate.map(item => {
       return {
-        id: String(new Date().getTime()) + item.amount,
+        id: String(Math.random() * 1000),
         description: item.description, 
         amountFormatted: formatCurrency(Number(item.amount)),
         frequency: item.frequency,
@@ -74,7 +106,7 @@ export const List: React.FC = () => {
     })
 
     setData(formattedData)
-  }, [listData, monthSelected, yearSelected, data.length])
+  }, [listData, monthSelected, yearSelected, data.length, selectedFrequency])
 
 
   return (
@@ -98,14 +130,18 @@ export const List: React.FC = () => {
       <Filters>
         <button 
           type='button'
-          className='tag-filter tag-filter-recurrent'
+          className={`tag-filter tag-filter-recurrent
+          ${selectedFrequency.includes('recorrente') && 'tag-actived'}`}
+          onClick={() => handleFrequencyClick('recorrente')}
         >
           Recorrentes
         </button>
 
         <button 
           type='button'
-          className='tag-filter tag-filter-eventual'
+          className={`tag-filter tag-filter-eventual
+          ${selectedFrequency.includes('eventual') && 'tag-actived'}`}
+          onClick={() => handleFrequencyClick('eventual')}
         >
           Eventuais
         </button>
