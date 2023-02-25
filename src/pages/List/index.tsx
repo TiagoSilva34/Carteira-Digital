@@ -26,8 +26,8 @@ interface IData {
 
 export const List: React.FC = () => {
   const { type } = useParams()
-  const [monthSelected, setMonthSelected] = useState<string>(String(new Date().getMonth() + 1))
-  const [yearSelected, setYearSelected] = useState<string>(String(new Date().getFullYear()))
+  const [monthSelected, setMonthSelected] = useState<number>(new Date().getMonth() + 1)
+  const [yearSelected, setYearSelected] = useState<number>(new Date().getFullYear())
   const [frequencyFilterSelected, setFrequencyFilterSelected] = useState<string[]>(['recorrente', 'eventual'])
   const [data, setData] = useState<IData[]>([])
 
@@ -83,10 +83,27 @@ export const List: React.FC = () => {
 
     if(alreadySelected >= 0) {
       const filtered = frequencyFilterSelected.filter(item => item !== frequency)
-      console.log(filtered)
       setFrequencyFilterSelected(filtered)
     } else {
       setFrequencyFilterSelected(prev => [...prev, frequency])
+    }
+  }
+
+  const handleMonthSelected = (month: string) => {
+    try {
+      var parseMonth = Number(month)
+      setMonthSelected(parseMonth)
+    } catch (error) {
+      throw new Error("Invalid month value. Is accept 0 - 24")
+    }
+  }
+
+  const handleYearSelected = (year: string) => {
+    try {
+      var parseYear = Number(year)
+      setYearSelected(parseYear)
+    } catch (error) {
+      throw new Error("Invalid year value. Is accept integer number")
     }
   }
 
@@ -94,8 +111,8 @@ export const List: React.FC = () => {
     const { data } = pageData
     const filteredDate = data.filter(item => {
       const date = new Date(item.date)
-      const month = String(date.getMonth() + 1)
-      const year = String(date.getFullYear())
+      const month = date.getMonth() + 1
+      const year = date.getFullYear()
       return month === monthSelected && year === yearSelected && frequencyFilterSelected.includes(item.frequency)
     })
     
@@ -122,12 +139,12 @@ export const List: React.FC = () => {
       >
         <SelectInput 
           options={months}
-          onChange={e => setMonthSelected(e.target.value)}
+          onChange={e => handleMonthSelected(e.target.value)}
           defaultValue={monthSelected}
         />
         <SelectInput 
           options={years}
-          onChange={e => setYearSelected(e.target.value)}
+          onChange={e => handleYearSelected(e.target.value)}
           defaultValue={yearSelected}
         />
       </ContentHeader>
