@@ -35,7 +35,7 @@ export const List: React.FC = () => {
     return type === "entry-balance" ? 
     {
       title: "Entradas",
-      lineColor: "#F7931b",
+      lineColor: "#4E41F0",
       data: gains
     }
     :
@@ -135,7 +135,7 @@ export const List: React.FC = () => {
     <Container>
        <ContentHeader 
         title={pageData.title}
-        lineColor='#E44C4E'
+        lineColor={pageData.lineColor}
       >
         <SelectInput 
           options={months}
