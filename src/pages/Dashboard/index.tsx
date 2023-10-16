@@ -3,6 +3,8 @@ import React, { useMemo, useState } from 'react'
 import { ContentHeader } from '../../components/ContentHeader'
 import { SelectInput } from '../../components/Selectinput'
 import { WalletBox } from '../../components/WalletBox'
+import { MessageBox } from '../../components/MessageBox'
+import { PieChartComponent } from '../../components/PieChart'
 
 import gains from "../../repositories/gains"
 import expenses from "../../repositories/expenses"
@@ -14,7 +16,6 @@ import {
   Container,
   Content 
 } from './styles'
-import { MessageBox } from '../../components/MessageBox'
 
 export const Dashboard: React.FC = () => {
   const [monthSelected, setMonthSelected] = useState<number>(new Date().getMonth() + 1)
@@ -192,6 +193,8 @@ export const Dashboard: React.FC = () => {
           footer={message.footerText}
           icon={message.icon}
         />
+
+        <PieChartComponent />
       </Content>
     </Container>
   )

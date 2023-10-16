@@ -7,7 +7,6 @@ export const Container = styled.div `
   background-color: ${props => props.theme.colors.tertiary};
   color: ${props => props.theme.colors.white};
 
-  margin: 10px;
   padding: 30px 20px;
 
   display: flex;
