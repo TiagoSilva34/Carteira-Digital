@@ -61,7 +61,7 @@ export const Legend = styled.li<ILegendProps> `
 
     border-radius: 5px;
 
-    font-size: 18px;
+    font-size: 14px;
 
     line-height: 40px;
 

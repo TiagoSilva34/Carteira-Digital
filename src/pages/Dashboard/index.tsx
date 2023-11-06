@@ -5,6 +5,7 @@ import { SelectInput } from '../../components/Selectinput'
 import { WalletBox } from '../../components/WalletBox'
 import { MessageBox } from '../../components/MessageBox'
 import { PieChartComponent } from '../../components/PieChart'
+import { HistoryBox } from '../../components/HistoryBox'
 
 import gains from "../../repositories/gains"
 import expenses from "../../repositories/expenses"
@@ -222,6 +223,7 @@ export const Dashboard: React.FC = () => {
           data={relationExpensesVersusGains}
         />
       </Content>
+      <HistoryBox />
     </Container>
   )
 }
