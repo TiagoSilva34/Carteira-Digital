@@ -153,6 +153,54 @@ export const Dashboard: React.FC = () => {
     return data
   }, [totalGains, totalExpensive])
 
+  const historyData = useMemo(() => {
+    return listOfMonths.map((_, month) => {
+      let amountEntry = 0
+
+      gains.forEach((gain) => {
+        const date = new Date(gain.date)
+        const gainMonth = date.getMonth()
+        const gainYear = date.getFullYear()
+
+        if (gainMonth === month && gainYear === yearSelected) {
+          try {
+            amountEntry += Number(gain.amount)
+          } catch (error) {
+            throw new Error('Amount entry is invalid')
+          }
+        } 
+      })
+
+      let amountOutput = 0
+      expenses.forEach((expense) => {
+        const date = new Date(expense.date)
+        const gainMonth = date.getMonth()
+        const gainYear = date.getFullYear()
+
+        if (gainMonth === month && gainYear === yearSelected) {
+          try {
+            amountOutput += Number(expense.amount)
+          } catch (error) {
+            throw new Error('Amount entry is invalid')
+          }
+        } 
+      })
+
+      return {
+        monthNumber: month,
+        month: listOfMonths[month].substring(0, 3),
+        amountEntry,
+        amountOutput
+      }
+    })
+    .filter(item => {
+      const currentMonth = new Date().getMonth()
+      const currentYear = new Date().getFullYear()
+
+      return (yearSelected === currentYear && item.monthNumber <= currentMonth) || (yearSelected < currentYear)
+    })
+  }, [yearSelected])
+
   const handleMonthSelected = (month: string) => {
     try {
       var parseMonth = Number(month)
@@ -222,8 +270,13 @@ export const Dashboard: React.FC = () => {
         <PieChartComponent 
           data={relationExpensesVersusGains}
         />
+
+        <HistoryBox 
+          data={historyData}
+          lineColorAmountEntry="#F7931B"
+          lineColorAmountOutput="#E44C4E"
+        />
       </Content>
-      <HistoryBox />
     </Container>
   )
 }
